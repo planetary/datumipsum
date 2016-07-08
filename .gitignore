@@ -1,0 +1,15 @@
+# generated files
+coverage
+build
+rev-manifest.json
+test-results.xml
+
+
+# dependencies
+node_modules
+
+
+# noise
+.DS_Store
+profile
+npm-debug.log

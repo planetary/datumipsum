@@ -1,7 +1,36 @@
 extends /layouts/default
 
 block title
-    | Homepage - Airframe
+    | Datum Ipsum
 
 block content
-    h1 Hello World
+    .g--container
+        .g--row.header
+            .g--quarter
+                h1 Datum Ipsum
+            .info
+
+            .g--quarter.globals
+                label Points
+                    input.globals--points
+                    .button.button--action Update
+                .button.globals--export.modal--toggle Copy Data
+        .g--row.content
+            .g--quarter.config
+                .config--col.config--fundamentals
+                    .config--col-header 
+                        .config--col-title Add:&nbsp;
+                        .config--col-buttons
+                            .button.button--primary.config--col-add(data-add="sine") Sine
+                            .button.button--primary.config--col-add(data-add="noise") Noise
+                            .button.button--primary.config--col-add(data-add="exponential") Exponential
+                    .config--col-content
+                
+            .g--auto.graph
+    .modal
+        .modal--body
+            .modal--header
+                | Data
+            .modal--toggle.modal--close ×
+            .modal--data
+        .modal--scrim

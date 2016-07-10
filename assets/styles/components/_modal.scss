@@ -1,0 +1,71 @@
+.modal--body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;
+    height: 60vh;
+    background: $white;
+    z-index: 100;
+    border-radius: 3px;
+    padding: 1rem;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal.is-open {
+    .modal--body {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .modal--scrim {
+        pointer-events: all;
+        opacity: 1;
+    }
+}
+
+.modal--close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 1rem;
+    height: 1rem;
+    font-size: 2rem;
+    line-height: 0.5rem;
+    color: $gray-dark;
+
+    &:hover {
+        color: $red;
+        cursor: pointer;
+    }
+}
+
+.modal--header {
+    line-height: 1rem;
+}
+
+.modal--data {
+    position: absolute;
+    border: 1px solid $gray-light;
+    background: $gray-lighter;
+    padding: 0.25rem;
+    top: 2.5rem;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.modal--scrim {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.2);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    opacity: 0;
+    pointer-events: none;
+}

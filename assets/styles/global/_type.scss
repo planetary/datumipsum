@@ -6,7 +6,7 @@ $base-line-height: 1.6;
 // typefaces
 $sans:        Helvetica, sans-serif;
 $serif:       Georgia, serif;
-$mono:        Courier, monospace;
+$mono:        'Space Mono', Courier, monospace;
 
 // font weights
 $weight-black:  900;
@@ -68,7 +68,7 @@ body,
 html {
     font-size: $base-font-size;
     line-height: $base-line-height;
-    font-family: $serif;
+    font-family: $mono;
     color: $black;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -93,14 +93,14 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: $sans;
+    font-family: $mono;
     font-weight: 700;
-    margin-bottom: 1rem;
 }
 
 h1 {
     font-size: $scale-huge;
     line-height: 1em;
+    margin: 0;
 }
 
 h2 {

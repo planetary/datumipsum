@@ -8,3 +8,38 @@ html {
 *::after {
     box-sizing: inherit;
 }
+
+.content {
+    height: 70vh;
+}
+
+.header {
+    margin: 2rem 0;
+}
+
+.info {
+    flex: auto;
+}
+
+.globals {
+    margin-top: 3rem;
+
+    label {
+        display: flex;
+    }
+
+    input,
+    label {
+        margin-bottom: 0;
+    }
+
+    input,
+    label,
+    .button {
+        flex: 0 1 auto;
+    }
+
+    input {
+        margin: 0 0.5rem;
+    }
+}

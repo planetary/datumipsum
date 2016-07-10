@@ -9,7 +9,9 @@ html
         meta(http-equiv="cleartype", content="on")
         title
             block title
-                | Airframe
+                | Datum Ipsum
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css")
+        link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Space+Mono")
         link(rel="stylesheet", href="styles/main.css")
         block head
           //- Additional head content (scripts, styles.
@@ -18,6 +20,9 @@ body
     block content
 
     script(src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js")
     script(src="scripts/bundle.js")
+    script.
+        !function(e,t,a,n,c,s,o){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,s=t.createElement(a),o=t.getElementsByTagName(a)[0],s.async=1,s.src=n,o.parentNode.insertBefore(s,o)}(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-43766713-5","auto"),ga("send","pageview");
     block scripts
       //- Additional scripts.

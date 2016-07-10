@@ -1,13 +1,12 @@
 .button {
-    font-family: $sans;
-    padding: 0.3rem 1rem 0.2rem;
+    font-family: $mono;
+    padding: 0.2rem 1rem;
     background: $gray-lighter;
     color: $black;
-    border: 1px solid;
     border-color: darken($gray-lighter, 5%);
     border-radius: $corner-radius;
     text-decoration: none;
-    display: inline-block;
+    text-align: center;
 
     &:hover {
         cursor: pointer;

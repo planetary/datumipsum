@@ -1,0 +1,79 @@
+.config {
+    display: flex;
+}
+
+.config--col {
+    flex: 1;
+
+    .button {
+        flex: 0 1 auto;
+    }
+}
+
+.config--col-header {
+    background: $gray-darker;
+    padding: 0.5rem 1rem;
+    border-radius: 3px 3px 0 0;
+    color: $white;
+}
+
+.config--col-title {
+    margin-bottom: 0.5rem;
+}
+
+.config--col-buttons {
+    display: flex;
+}
+
+.config--col-content {
+    background: $gray-lighter;
+    padding: 0.5rem;
+    border-radius: 0 0 3px 3px;
+}
+
+.config--item {
+    padding: 0.5rem;
+    background: $white;
+    margin-bottom: 0.5rem;
+    border-radius: 3px;
+
+    button {
+        flex: 0 1 auto;
+    }
+
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+}
+
+.config--item-header {
+    display: flex;
+}
+
+.config--item-type {
+    flex: 1 0 auto;
+    text-transform: capitalize;
+}
+
+.config--item-settings {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 200ms ease-out, opacity 200ms ease-out;
+
+    &.is-shown {
+        max-height: 1000px;
+        opacity: 1;
+        transition: max-height 300ms ease-in, opacity 300ms ease-in;
+    }
+
+    label:first-child {
+        padding-top: 1.5rem;
+    }
+}
+
+.config--empty {
+    text-align: center;
+    color: $gray;
+    padding: 1rem 0;
+}

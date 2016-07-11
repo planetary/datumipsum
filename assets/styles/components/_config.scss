@@ -26,16 +26,15 @@
 }
 
 .config--col-content {
-    background: $gray-lighter;
+    background: $white;
     padding: 0.5rem;
     border-radius: 0 0 3px 3px;
 }
 
 .config--item {
     padding: 0.5rem;
-    background: $white;
     margin-bottom: 0.5rem;
-    border-radius: 3px;
+    border-bottom: 1px solid $gray-lighter;
 
     button {
         flex: 0 1 auto;
@@ -43,6 +42,7 @@
 
     &:last-of-type {
         margin-bottom: 0;
+        border-bottom: 0;
     }
 }
 

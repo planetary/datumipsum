@@ -1,6 +1,8 @@
 /* apply a natural box layout model to all elements, but allowing components to change */
 html {
     box-sizing: border-box;
+    min-height: 100vh;
+    background: lighten($green, 45%);
 }
 
 *,
@@ -9,12 +11,23 @@ html {
     box-sizing: inherit;
 }
 
+.logo {
+    h1 {
+        font-size: 2rem;
+    }
+
+    p {
+        margin: 0.25rem 0;
+        color: rgba(0, 0, 0, 0.4);
+    }
+}
+
 .content {
     height: 70vh;
 }
 
 .header {
-    margin: 2rem 0;
+    margin: 2rem 0 1rem;
 }
 
 .info {
@@ -22,7 +35,6 @@ html {
 }
 
 .globals {
-    margin-top: 3rem;
 
     label {
         display: flex;

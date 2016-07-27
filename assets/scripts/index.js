@@ -1,13 +1,13 @@
 const Noise = require('noisejs').Noise;
-const c3 = require('c3');
+const d3 = require('d3');
 
 const state = {
     points: 50,
     items: [],
-    data: ['data']
+    data: []
 };
 
-let chart;
+const graph = document.getElementById('graph');
 
 const settingsTemplate = {
     noise: {
@@ -63,6 +63,79 @@ const settingsTemplate = {
     }
 };
 
+const renderGraph = () => {
+    const margin = 20;
+    const width = graph.offsetWidth;
+    const height = graph.offsetHeight - (margin * 2);
+
+    const x = d3.scale.linear().range([0, width]);
+    const y = d3.scale.linear().range([height, 0]);
+
+    x.domain(d3.extent(state.data, (d) => d[0]));
+    y.domain(d3.extent(state.data, (d) => d[1]));
+
+    const line = d3.svg.line()
+        .x((d) => x(d[0]))
+        .y((d) => y(d[1]));
+
+    const graphExists = document.querySelectorAll('svg').length;
+
+    if(graphExists) {
+        const svg = d3.select(graph);
+
+        svg.select('.line')
+            .datum(state.data)
+            .attr('d', line);
+    } else {
+        const svg = d3.select(graph).append('svg')
+            .attr('width', width)
+            .attr('height', height)
+            .append('g')
+            .attr('transform', `translate(0, ${margin} )`);
+
+        // here's where the magic happens
+        svg.append('path')
+            .datum(state.data)
+            .attr('class', 'line')
+            .attr('d', line);
+    }
+};
+
+
+const updateData = () => {
+    state.data = ['data'];
+    for (let i = 0; i < state.points; i++) {
+        let value = 0;
+        for (let j = 0; j < state.items.length; j++) {
+            const thisItem = state.items[j];
+            switch (thisItem.type) {
+                case 'sine':
+                    value += (
+                        (1 + (Math.sin(Math.PI * 2 * (((i / state.points) +
+                        (thisItem.offset / state.points)) * thisItem.frequency) + Math.PI))) *
+                        ((thisItem.amplitude) / 2)
+                    );
+                    break;
+                case 'noise':
+                    const thisNoise = new Noise(thisItem.seed);
+                    value += thisNoise.perlin2(i / thisItem.wavelength, i / thisItem.wavelength) *
+                    thisItem.amplitude;
+                    break;
+                case 'exponential':
+                    value += ((Math.pow((thisItem.slope), (i / state.points))) / thisItem.slope) *
+                    thisItem.amplitude;
+                    break;
+                default:
+            }
+        }
+        state.data[i] = [i, value.toPrecision(3)];
+    }
+    renderGraph();
+    console.table(state.data);
+    $('.modal--data').text(state.data.slice(1, -1));
+};
+
+
 const downloadChart = () => {
     const e = document.createElement('script');
     e.setAttribute('src', 'https://nytimes.github.io/svg-crowbar/svg-crowbar.js');
@@ -84,6 +157,21 @@ const updateSettings = (item) => {
         state.items[thisIndex][thisType] = thisVal;
     }
     updateData();
+};
+
+const bindItemHandlers = () => {
+    $('.config--item-delete').on('click', function() {
+        const thisIndex = $(this).parents('.config--item').index('.config--item');
+        removeItem(thisIndex);
+    });
+    $('.config--item-settings-toggle').on('click', function() {
+        $(this).parents('.config--item').children('.config--item-settings')
+            .toggleClass('is-shown');
+    });
+    $('input').on('change', function() {
+        updateSettings(this);
+    });
+    $('.download').on('click', downloadChart);
 };
 
 const updateConfig = () => {
@@ -137,21 +225,6 @@ const removeItem = (index) => {
     updateData();
 };
 
-const bindItemHandlers = () => {
-    $('.config--item-delete').on('click', function() {
-        const thisIndex = $(this).parents('.config--item').index('.config--item');
-        removeItem(thisIndex);
-    });
-    $('.config--item-settings-toggle').on('click', function() {
-        $(this).parents('.config--item').children('.config--item-settings')
-            .toggleClass('is-shown');
-    });
-    $('input').on('change', function() {
-        updateSettings(this);
-    });
-    $('.download').on('click', downloadChart);
-};
-
 const addItem = (type) => {
     let newItem = {};
     switch(type) {
@@ -202,76 +275,10 @@ const init = () => {
             toggleModal();
         e.stopPropagation();
     });
-    chart = c3.generate({
-        bindto: '.graph',
-        interaction: {
-            enabled: false
-        },
-        data: {
-            columns: [
-                state.data
-            ],
-            type: 'spline'
-        },
-        point: {
-            show: false
-        },
-        axis: {
-            x: {
-                min: 0,
-                max: state.points - 1,
-                show: false
-            },
-            y: {
-                show: false
-            }
-        },
-        legend: {
-            show: false
-        }
-    });
+    renderGraph();
     updateConfig();
 };
 
 $(document).ready(function() {
     init();
 });
-
-const updateData = () => {
-    state.data = ['data'];
-    for (let i = 0; i < state.points; i++) {
-        let value = 0;
-        for (let j = 0; j < state.items.length; j++) {
-            const thisItem = state.items[j];
-            switch (thisItem.type) {
-                case 'sine':
-                    value += (
-                        (1 + (Math.sin(Math.PI * 2 * (((i / state.points) +
-                        (thisItem.offset / state.points)) * thisItem.frequency) + Math.PI))) *
-                        ((thisItem.amplitude) / 2)
-                    );
-                    break;
-                case 'noise':
-                    const thisNoise = new Noise(thisItem.seed);
-                    value += thisNoise.perlin2(i / thisItem.wavelength, i / thisItem.wavelength) *
-                    thisItem.amplitude;
-                    break;
-                case 'exponential':
-                    value += ((Math.pow((thisItem.slope), (i / state.points))) / thisItem.slope) *
-                    thisItem.amplitude;
-                    break;
-                default:
-            }
-        }
-        state.data[i + 1] = value.toPrecision(3);
-    }
-    chart.load({
-        columns: [
-            state.data
-        ]
-    });
-    chart.axis.max({
-        x: state.points - 1
-    });
-    $('.modal--data').text(state.data.slice(1, -1));
-};

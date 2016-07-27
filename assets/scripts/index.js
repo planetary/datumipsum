@@ -93,7 +93,6 @@ const renderGraph = () => {
             .append('g')
             .attr('transform', `translate(0, ${margin} )`);
 
-        // here's where the magic happens
         svg.append('path')
             .datum(state.data)
             .attr('class', 'line')
@@ -131,7 +130,6 @@ const updateData = () => {
         state.data[i] = [i, value.toPrecision(3)];
     }
     renderGraph();
-    console.table(state.data);
     $('.modal--data').text(state.data.slice(1, -1));
 };
 
@@ -160,6 +158,14 @@ const updateSettings = (item) => {
 };
 
 const bindItemHandlers = () => {
+
+    // first, unbind
+    $('.config--item-delete').off();
+    $('.config--item-settings-toggle').off();
+    $('input').off();
+    $('.download').off();
+
+    // now, bind
     $('.config--item-delete').on('click', function() {
         const thisIndex = $(this).parents('.config--item').index('.config--item');
         removeItem(thisIndex);

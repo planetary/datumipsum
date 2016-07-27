@@ -69,7 +69,7 @@ const renderGraph = () => {
     const height = graph.offsetHeight - (margin * 2);
 
     const x = d3.scale.linear().range([0, width]);
-    const y = d3.scale.linear().range([height, 0]);
+    const y = d3.scale.linear().range([height - margin, 0]);
 
     x.domain(d3.extent(state.data, (d) => d[0]));
     y.domain(d3.extent(state.data, (d) => d[1]));
@@ -91,7 +91,7 @@ const renderGraph = () => {
             .attr('width', width)
             .attr('height', height)
             .append('g')
-            .attr('transform', `translate(0, ${margin} )`);
+            .attr('transform', `translate(0, ${margin / 2} )`);
 
         svg.append('path')
             .datum(state.data)

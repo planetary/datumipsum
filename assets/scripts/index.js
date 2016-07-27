@@ -63,6 +63,13 @@ const settingsTemplate = {
     }
 };
 
+const downloadChart = () => {
+    const e = document.createElement('script');
+    e.setAttribute('src', 'https://nytimes.github.io/svg-crowbar/svg-crowbar.js');
+    e.setAttribute('class', 'svg-crowbar');
+    document.body.appendChild(e);
+};
+
 const updateSettings = (item) => {
     if ($(item).attr('class') === 'globals--points') {
         state.points = $(item).val();
@@ -142,6 +149,7 @@ const bindItemHandlers = () => {
     $('input').on('change', function() {
         updateSettings(this);
     });
+    $('.download').on('click', downloadChart);
 };
 
 const addItem = (type) => {

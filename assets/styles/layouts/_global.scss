@@ -55,3 +55,11 @@ html {
         margin: 0 0.5rem;
     }
 }
+
+.globals--buttons {
+    display: flex;
+
+    .button {
+        flex: auto;
+    }
+}

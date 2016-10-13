@@ -19,7 +19,7 @@ const settingsTemplate = {
         wavelength: {
             type: 'slider',
             min: 2,
-            max: 10,
+            max: 30,
             step: 1
         },
         amplitude: {
@@ -43,9 +43,9 @@ const settingsTemplate = {
         },
         offset: {
             type: 'slider',
-            min: -(state.points / 2),
-            max: (state.points / 2),
-            step: 1
+            min: -1,
+            max: 1,
+            step: 0.05
         }
     },
     exponential: {
@@ -111,7 +111,7 @@ const updateData = () => {
                 case 'sine':
                     value += (
                         (1 + (Math.sin(Math.PI * 2 * (((i / state.points) +
-                        (thisItem.offset / state.points)) * thisItem.frequency) + Math.PI))) *
+                        (thisItem.offset / 2)) * thisItem.frequency) + Math.PI))) *
                         ((thisItem.amplitude) / 2)
                     );
                     break;
@@ -144,6 +144,7 @@ const downloadChart = () => {
 const updateSettings = (item) => {
     if ($(item).attr('class') === 'globals--points') {
         state.points = $(item).val();
+        console.log(state.points);
     } else {
         const thisIndex = $(item).parents('.config--item').index('.config--item');
         let thisType = '';
@@ -158,7 +159,6 @@ const updateSettings = (item) => {
 };
 
 const bindItemHandlers = () => {
-
     // first, unbind
     $('.config--item-delete').off();
     $('.config--item-settings-toggle').off();

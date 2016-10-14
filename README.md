@@ -1,30 +1,19 @@
-# Airframe
+# Datum Ipsum
+## Realistic placeholder data for design & development
 
-> A Project Starter Kit, made with love by [Planetary](http://planetary.io)
+Placeholder data is a lot like placeholder text. It’s a design tool meant to ensure the final product — in our case, a real-time data visualization — matches our mockups. It’s useful in all the same ways placeholder text is useful:
 
-## What does it do?
+1. Placeholder data allows a designer to test her assumptions about the product.
+2. Placeholder data makes decision-making much easier by providing realistic constraints.
+3. Placeholder data sets realistic expectations for clients and stakeholders.
 
-Airframe allows you to rapidly prototype sites by providing a lightweight scaffold. It makes
-suggestions without being too prescriptive.
-
-The scaffold includes `gulp` for compilation, `jade` for templates, `scss` for smart CSS
-compilation, and `browserify` for Javascript compilation.
-
-In addition to the compilation tasks, Airframe includes:
-* A clear, concise default folder structure that is suggested but not prescribed.
-* A small amount of default SCSS for normalization and to provide basic grid functionality.
-* Four `browserify` transforms:
-  * [`babelify`](https://github.com/babel/babelify): allows you to write ES6 on the frontend
-  * [`brfs`](https://github.com/substack/brfs): allows you to use `fs.readFile[Sync]`
-  * [`bulkify`](https://github.com/substack/bulkify): allows you to glob entire folders
-  * [`envify`](https://github.com/hughsk/envify): allows you to use `process.env` in frontend code
-* A default style guide (at `/styles`) that can be used as a jumping-off point for design.
+Read the full explanation of placeholder data [here](https://medium.com/mission-log/datum-ipsum-designing-real-time-visualizations-with-realistic-placeholder-data-27b873307ff9#.tj78ojl10).
 
 ### Getting Started
 
 ```bash
-$ git clone git@github.com:planetarycorp/airframe
-$ cd airframe
+$ git clone git@github.com:planetary/datumipsum
+$ cd datumipsum
 $ npm install
 ```
 

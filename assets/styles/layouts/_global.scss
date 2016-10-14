@@ -2,7 +2,7 @@
 html {
     box-sizing: border-box;
     min-height: 100vh;
-    background: lighten($green, 45%);
+    background: lighten($gray, 38%);
 }
 
 *,
@@ -11,7 +11,12 @@ html {
     box-sizing: inherit;
 }
 
+.outter {
+    height: 100%;
+}
+
 .logo {
+    margin-left: 1rem;
     h1 {
         font-size: 2rem;
     }
@@ -23,43 +28,51 @@ html {
 }
 
 .content {
-    height: 70vh;
-}
-
-.header {
-    margin: 2rem 0 1rem;
-}
-
-.info {
-    flex: auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .globals {
 
-    label {
+    span {
         display: flex;
     }
 
-    input,
-    label {
-        margin-bottom: 0;
-    }
-
-    input,
-    label,
-    .button {
-        flex: 0 1 auto;
-    }
-
     input {
-        margin: 0 0.5rem;
+        margin: 0;
+        color: $black;
+        border: 0;
+        padding: 0.25rem;
     }
+
+    .button {
+        margin-left: 0.5rem;
+        flex: 1 0 auto;
+    }
+}
+
+.header {
+    flex: 0 1 auto;
+    padding: 1rem 0.5rem 0.5rem;
+}
+
+.main {
+    flex: 1 0 auto;
+    padding: 0.5rem;
+}
+
+.footer {
+    flex: 0 1 auto;
+    padding: 0.5rem 0.5rem 1rem;
 }
 
 .globals--buttons {
     display: flex;
+    flex-flow: row-reverse;
 
     .button {
-        flex: auto;
+        flex: 0 1 auto;
+        margin-left: 1rem;
     }
 }

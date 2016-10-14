@@ -1,5 +1,9 @@
 .config {
     display: flex;
+    flex-direction: column;
+    background: $black;
+    padding: 1rem;
+    color: $white;
 }
 
 .config--col {
@@ -11,8 +15,7 @@
 }
 
 .config--col-header {
-    background: $gray-darker;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0;
     border-radius: 3px 3px 0 0;
     color: $white;
 }
@@ -23,18 +26,16 @@
 
 .config--col-buttons {
     display: flex;
-}
 
-.config--col-content {
-    background: $white;
-    padding: 0.5rem;
-    border-radius: 0 0 3px 3px;
+    .button {
+        flex: auto;
+    }
 }
 
 .config--item {
     padding: 0.5rem;
     margin-bottom: 0.5rem;
-    border-bottom: 1px solid $gray-lighter;
+    background: $gray-darker;
 
     button {
         flex: 0 1 auto;
@@ -42,7 +43,10 @@
 
     &:last-of-type {
         margin-bottom: 0;
-        border-bottom: 0;
+    }
+
+    input {
+        color: $black;
     }
 }
 
@@ -53,6 +57,7 @@
 .config--item-type {
     flex: 1 0 auto;
     text-transform: capitalize;
+    line-height: 2.25rem;
 }
 
 .config--item-settings {

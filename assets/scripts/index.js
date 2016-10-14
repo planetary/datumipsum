@@ -68,11 +68,25 @@ const renderGraph = () => {
     const width = graph.offsetWidth;
     const height = graph.offsetHeight - (margin * 2);
 
+    const min = (state.data.length ? state.data.reduce((a, b) => {
+        if (typeof a === 'object')
+            a = a[1];
+        return Math.min(a, b[1]);
+    }) : 0);
+
+    const max = (state.data.length ? state.data.reduce((a, b) => {
+        if (typeof a === 'object')
+            a = a[1];
+        return Math.max(a, b[1]);
+    }) : 0);
+
     const x = d3.scale.linear().range([0, width]);
-    const y = d3.scale.linear().range([height - margin, 0]);
+    const y = d3.scale.linear().range([height - margin, min]);
 
     x.domain(d3.extent(state.data, (d) => d[0]));
-    y.domain(d3.extent(state.data, (d) => d[1]));
+    y.domain([min, max]);
+
+    console.log(d3.extent(state.data, (d) => d[1]));
 
     const line = d3.svg.line()
         .x((d) => x(d[0]))

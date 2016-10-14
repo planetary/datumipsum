@@ -5,22 +5,14 @@ block title
 
 block content
     .g--container
-        .g--row.header
-            .g--quarter.logo
-                h1 Datum Ipsum
-                p Realistic placeholder data generator
-                a(href='https://medium.com/mission-log/datum-ipsum-designing-real-time-visualizations-with-realistic-placeholder-data-27b873307ff9' target='_blank') What is this?
-            .info
-
-            .g--quarter.globals
-                label Points
-                    input.globals--points
-                    .button.button--action Update
-                .globals--buttons
-                    .button.button--primary.globals--export.modal--toggle Copy Data
-                    .button.button--secondary.globals--export.download Download SVG
-        .g--row.content
+        .g--row.outter
             .g--quarter.config
+                .globals
+                    label 
+                        span Points
+                        span
+                            input.globals--points
+                            .button.button--action Update
                 .config--col.config--fundamentals
                     .config--col-header 
                         .config--col-title Add:&nbsp;
@@ -29,8 +21,18 @@ block content
                             .button.button--primary.config--col-add(data-add="noise") Noise
                             .button.button--primary.config--col-add(data-add="exponential") Exponential
                     .config--col-content
-                
-            .g--auto.graph#graph
+            .g--auto.content
+                .g--row.header
+                    .g--auto.logo
+                        h1 📈 Datum Ipsum
+                        p Realistic placeholder data generator
+                        a(href='https://medium.com/mission-log/datum-ipsum-designing-real-time-visualizations-with-realistic-placeholder-data-27b873307ff9' target='_blank') What is this?
+                .g--row.main
+                    .g--auto.graph#graph
+                .g--row.footer
+                    .g--auto.globals--buttons
+                        .button.button--primary.globals--export.modal--toggle Copy Data
+                        .button.button--secondary.globals--export.download Download SVG
     .modal
         .modal--body
             .modal--header

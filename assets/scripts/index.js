@@ -86,8 +86,6 @@ const renderGraph = () => {
     x.domain(d3.extent(state.data, (d) => d[0]));
     y.domain([min, max]);
 
-    console.log(d3.extent(state.data, (d) => d[1]));
-
     const line = d3.svg.line()
         .x((d) => x(d[0]))
         .y((d) => y(d[1]));
@@ -158,7 +156,6 @@ const downloadChart = () => {
 const updateSettings = (item) => {
     if ($(item).attr('class') === 'globals--points') {
         state.points = $(item).val();
-        console.log(state.points);
     } else {
         const thisIndex = $(item).parents('.config--item').index('.config--item');
         let thisType = '';
